@@ -1,3 +1,3 @@
 module.exports = {
-	token: 'test' // your API token here
+	token: '' // your API token here
 }
