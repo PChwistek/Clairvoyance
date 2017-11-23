@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var axios = require('axios');
-var keys = require('./pandaScoreKeys')
+var keys = require('../pandaScoreKeys');
 
 
 var clairvoyanceRouter = express.Router();

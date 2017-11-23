@@ -2,7 +2,7 @@ var express = require('express'); //for the express server
 var morgan = require('morgan'); //to log middleware
 var cors = require('cors'); //to prevent weird localhost issues
 var axios = require('axios');
-var keys = require('./pandaScoreKeys')
+var keys = require('./pandaScoreKeys');
 
 var clairvoyanceRouter = require('./expressRoutes/clairvoyanceRouter.js');
 
