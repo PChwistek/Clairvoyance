@@ -1,5 +1,5 @@
 # Clairvoyance
-In order to use the app, make sure to create a file called pandaScoreKeys.js with your API token from PandaScore
+In order to run a local version, make sure to create a file called pandaScoreKeys.js with the following code:
 
 
 ```
