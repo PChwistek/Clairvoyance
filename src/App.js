@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
 import getWeb3 from './utils/getWeb3'
+import axios from 'axios';
 
 import './css/oswald.css'
 import './css/open-sans.css'
@@ -13,7 +14,8 @@ class App extends Component {
 
     this.state = {
       storageValue: 0,
-      web3: null
+      web3: null,
+      posts: []
     }
   }
 
@@ -33,6 +35,15 @@ class App extends Component {
     .catch(() => {
       console.log('Error finding web3.')
     })
+  }
+
+  componentDidMount() {
+    axios.get(`http://localhost:3001/matches/`)
+      .then(res => {
+        console.log(res.data)
+        //const posts = res.data.data.children.map(obj => obj.data);
+        //this.setState({ posts });
+      });
   }
 
   instantiateContract() {

@@ -13,7 +13,7 @@ clairvoyanceRouter.use(bodyParser.json());
 
 clairvoyanceRouter.get('/', (req, res) => {
 	res.writeHead(200, { 'Content-Type': 'text/plain' });
-	res.end("here");
+	res.end("Got to the clairvoyanceRouter");
 });
 
 /*
@@ -21,8 +21,7 @@ clairvoyanceRouter.route("/")
 .all({
 	axios.get('https://api.pandascore.co/lives?token=' + apiToken)
 	  .then(response => {
-	    console.log(response.data.url);
-	    console.log(response.data.explanation);
+	    console.log(response.data);
 	  })
 	  .catch(error => {
 	    console.log(error);
