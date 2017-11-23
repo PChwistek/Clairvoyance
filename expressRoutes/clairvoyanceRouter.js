@@ -1,10 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var axios = require('axios');
+var keys = require('./pandaScoreKeys')
+
 
 var clairvoyanceRouter = express.Router();
 
-var apiToken = "vOXukoC37ZD4UhR9gQKkitKM7uIlG7CghUnvXp6jp3xMho7Gmmo";
+var apiToken = keys.token;
 
 
 clairvoyanceRouter.use(bodyParser.json());
