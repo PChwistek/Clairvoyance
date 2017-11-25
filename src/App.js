@@ -38,12 +38,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/matches/`)
+    var currentEvents = ['test'];
+    axios.get(`http://localhost:3000/live/`)
       .then(res => {
-        console.log(res.data)
+        currentEvents.push(res.data)
+        console.log("These are the current tournaments. We will use the test socket, though");
+        console.log(currentEvents)
         //const posts = res.data.data.children.map(obj => obj.data);
         //this.setState({ posts });
-      });
+    });
+    //get socket, eventually, this should be for any live event
+    var socket = new WebSocket('ws://localhost:3000/' + currentEvents[0]); 
+    socket.onopen = function(){
+      socket.send("Here's some text that the server is urgently awaiting!"); 
+    }
+    socket.onmessage = function(event) {
+      console.log(event.data)
+    }
   }
 
   instantiateContract() {
