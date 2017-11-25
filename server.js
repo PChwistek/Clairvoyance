@@ -7,6 +7,8 @@ var clairvoyanceRouter = require('./expressRoutes/clairvoyanceRouter.js');
 const keys = require('./pandaScoreKeys');
 var ClientSocket = require('ws');
 
+var port = 3000;
+
 app.use('/', clairvoyanceRouter); //for REST
 
 app.use(function (req, res, next) {
@@ -36,11 +38,17 @@ app.ws('/:match_id', function(ws, req) {
   }
 
   pandaSocket.onmessage = function(event) {
-	 ws.send(event.data);
+    try{
+      ws.send(event.data);
+    } catch(error) {
+      //console.log(error);
+    }
   }
-	
+
 });
  
-app.listen(3000);
+app.listen(port, function(){
+  console.log("Server listening at: " +  port);
+});
 
 

@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       storageValue: 0,
       web3: null,
-      posts: []
+      currentMatches: [{id: 'test', isOngoing: true , game: 'league-of-legends', gameData: {}}]
     }
   }
 
@@ -38,22 +38,47 @@ class App extends Component {
   }
 
   componentDidMount() {
-    var currentEvents = ['test'];
     axios.get(`http://localhost:3000/live/`)
       .then(res => {
-        currentEvents.push(res.data)
-        console.log("These are the current tournaments. We will use the test socket, though");
-        console.log(currentEvents)
-        //const posts = res.data.data.children.map(obj => obj.data);
-        //this.setState({ posts });
+        var tempList = res.data;
+        var temp = {};
+        for (var i = tempList.length - 1; i >= 0; i--) {
+          temp = {
+            id: tempList[i].endpoints[0].match_id,
+            isOngoing: true,
+            game: tempList[i].event.game,
+            gameData: {}
+          };
+          this.state.currentMatches.push(temp);
+        };
+        console.log(this.state.currentMatches);
+    }).catch(() => {
+      console.log('Error connecting to REST part of server');
     });
+
     //get socket, eventually, this should be for any live event
-    var socket = new WebSocket('ws://localhost:3000/' + currentEvents[0]); 
+    var socket = new WebSocket('ws://localhost:3000/' + this.state.currentMatches[0].id)
     socket.onopen = function(){
-      socket.send("Here's some text that the server is urgently awaiting!"); 
+      socket.send("Hellooooo from the other side!")
     }
-    socket.onmessage = function(event) {
-      console.log(event.data)
+    socket.onmessage = (event: Event) => {
+
+      var temp = JSON.parse(event.data);
+      var tempMatches = this.state.currentMatches;
+
+      try{
+        tempMatches[0].isOngoing = !temp.game.finished; //just for ease of access
+        tempMatches[0].gameData = temp;
+      } catch(error){
+      //  console.log(error);
+      }
+
+      this.setState({
+        currentMatches : tempMatches
+      })
+
+      console.log(this.state.currentMatches[0]);
+
     }
   }
 
