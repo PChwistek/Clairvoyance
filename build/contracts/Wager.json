@@ -1,0 +1,1529 @@
+{
+  "contractName": "Wager",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "wagerEventId",
+          "type": "uint256"
+        },
+        {
+          "name": "isRedWinner",
+          "type": "bool"
+        }
+      ],
+      "name": "makeBet",
+      "outputs": [
+        {
+          "name": "theMatchId",
+          "type": "uint256"
+        }
+      ],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "wagerEventId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMatchId",
+      "outputs": [
+        {
+          "name": "theMatchId",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "wagers",
+      "outputs": [
+        {
+          "name": "moneyPool",
+          "type": "uint256"
+        },
+        {
+          "name": "numBets",
+          "type": "uint256"
+        },
+        {
+          "name": "matchId",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "wagerEventId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMoneyPool",
+      "outputs": [
+        {
+          "name": "theMoneyPool",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "wagerEventId",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "name": "getNumBets",
+      "outputs": [
+        {
+          "name": "theNumBets",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "wagerEventId",
+          "type": "uint256"
+        }
+      ],
+      "name": "checkWagerEvent",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b6102aa8061001e6000396000f300606060405260043610610078576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632093beb91461007d57806322d0e7ff146100a0578063375068e5146100d7578063503bd0c11461011c5780637708e43b14610153578063a27555811461018a575b600080fd5b61009e600480803590602001909190803515159060200190919050506101c5565b005b34156100ab57600080fd5b6100c160048080359060200190919050506101ec565b6040518082815260200191505060405180910390f35b34156100e257600080fd5b6100f8600480803590602001909190505061020b565b60405180848152602001838152602001828152602001935050505060405180910390f35b341561012757600080fd5b61013d6004808035906020019091905050610235565b6040518082815260200191505060405180910390f35b341561015e57600080fd5b6101746004808035906020019091905050610254565b6040518082815260200191505060405180910390f35b341561019557600080fd5b6101ab6004808035906020019091905050610273565b604051808215151515815260200191505060405180910390f35b34600080848152602001908152602001600020600001600082825401925050819055505050565b6000806000838152602001908152602001600020600201549050919050565b60006020528060005260406000206000915090508060000154908060010154908060020154905083565b6000806000838152602001908152602001600020600001549050919050565b6000806000838152602001908152602001600020600101549050919050565b6000600190509190505600a165627a7a72305820eec2ab9fd3469ad65e86be5a4be5cd9bc7fb3edad0be30163b768d0397a179030029",
+  "deployedBytecode": "0x606060405260043610610078576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632093beb91461007d57806322d0e7ff146100a0578063375068e5146100d7578063503bd0c11461011c5780637708e43b14610153578063a27555811461018a575b600080fd5b61009e600480803590602001909190803515159060200190919050506101c5565b005b34156100ab57600080fd5b6100c160048080359060200190919050506101ec565b6040518082815260200191505060405180910390f35b34156100e257600080fd5b6100f8600480803590602001909190505061020b565b60405180848152602001838152602001828152602001935050505060405180910390f35b341561012757600080fd5b61013d6004808035906020019091905050610235565b6040518082815260200191505060405180910390f35b341561015e57600080fd5b6101746004808035906020019091905050610254565b6040518082815260200191505060405180910390f35b341561019557600080fd5b6101ab6004808035906020019091905050610273565b604051808215151515815260200191505060405180910390f35b34600080848152602001908152602001600020600001600082825401925050819055505050565b6000806000838152602001908152602001600020600201549050919050565b60006020528060005260406000206000915090508060000154908060010154908060020154905083565b6000806000838152602001908152602001600020600001549050919050565b6000806000838152602001908152602001600020600101549050919050565b6000600190509190505600a165627a7a72305820eec2ab9fd3469ad65e86be5a4be5cd9bc7fb3edad0be30163b768d0397a179030029",
+  "sourceMap": "25:886:0:-;;;265:21;;;;;;;;25:886;;;;;;",
+  "deployedSourceMap": "25:886:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;673:134;;;;;;;;;;;;;;;;;;;;;;;;;;;;421:123;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;220:41;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;289:129;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;547:123;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;813:95;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;673:134;794:9;760:6;:20;767:12;760:20;;;;;;;;;;;:30;;;:43;;;;;;;;;;;673:134;;:::o;421:123::-;485:15;512:6;:20;519:12;512:20;;;;;;;;;;;:28;;;505:35;;421:123;;;:::o;220:41::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;289:129::-;355:17;384:6;:20;391:12;384:20;;;;;;;;;;;:30;;;377:37;;289:129;;;:::o;547:123::-;610:15;637:6;:20;644:12;637:20;;;;;;;;;;;:29;;;630:36;;547:123;;;:::o;813:95::-;866:12;897:4;890:11;;813:95;;;:::o",
+  "source": "pragma solidity ^0.4.4;\n\ncontract Wager {\n\n\n\tstruct Bet {\n\t\taddress client;\n\t\tuint amount;\n\t\tbool redWins;\n\t}\n\n\tstruct WagerEvent {\n\t\tuint moneyPool;\n\t\tuint numBets;\n\t\tuint matchId;\n\t\tmapping(address => Bet) bets; \n\t}\n\n\tmapping(uint => WagerEvent) public wagers;\n\n\tfunction Wager(){\n\n\t}\n\n\tfunction getMoneyPool(uint wagerEventId) public constant returns (uint theMoneyPool){\n\t\treturn wagers[wagerEventId].moneyPool;\n\t}\n\n\tfunction getMatchId(uint wagerEventId) public constant returns (uint theMatchId){\n\t\treturn wagers[wagerEventId].matchId;\n\t}\n\n\tfunction getNumBets(uint wagerEventId) public constant returns(uint theNumBets){\n\t\treturn wagers[wagerEventId]. numBets;\n\t}\n\n\tfunction makeBet(uint wagerEventId, bool isRedWinner) payable {\n\t\t//storage keyword?\n\t\twagers[wagerEventId].moneyPool += msg.value;\n\t}\n\n    function checkWagerEvent(uint wagerEventId) returns (bool success) {\n        return true;\n    }\n\n}\n\n\n\n\n",
+  "sourcePath": "/Users/Phil/Desktop/WebProjects/clairvoyance/contracts/Wager.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/Phil/Desktop/WebProjects/clairvoyance/contracts/Wager.sol",
+      "exportedSymbols": {
+        "Wager": [
+          93
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".4"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            93
+          ],
+          "name": "Wager",
+          "scope": 94
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "Bet",
+              "scope": 93,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "public",
+              "canonicalName": "Wager.Bet"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "client",
+                  "type": "address",
+                  "constant": false,
+                  "scope": 8,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "id": 3,
+                "name": "VariableDeclaration",
+                "src": "60:14:0",
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 2,
+                    "name": "ElementaryTypeName",
+                    "src": "60:7:0"
+                  }
+                ]
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "amount",
+                  "scope": 8,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 4,
+                    "name": "ElementaryTypeName",
+                    "src": "78:4:0"
+                  }
+                ],
+                "id": 5,
+                "name": "VariableDeclaration",
+                "src": "78:11:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "redWins",
+                  "scope": 8,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bool",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 6,
+                    "name": "ElementaryTypeName",
+                    "src": "93:4:0"
+                  }
+                ],
+                "id": 7,
+                "name": "VariableDeclaration",
+                "src": "93:12:0"
+              }
+            ],
+            "id": 8,
+            "name": "StructDefinition",
+            "src": "45:64:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "WagerEvent",
+              "scope": 93,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "public",
+              "canonicalName": "Wager.WagerEvent"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "moneyPool",
+                  "type": "uint256",
+                  "constant": false,
+                  "scope": 19,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "id": 10,
+                "name": "VariableDeclaration",
+                "src": "134:14:0",
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 9,
+                    "name": "ElementaryTypeName",
+                    "src": "134:4:0"
+                  }
+                ]
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "numBets",
+                  "scope": 19,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 11,
+                    "name": "ElementaryTypeName",
+                    "src": "152:4:0"
+                  }
+                ],
+                "id": 12,
+                "name": "VariableDeclaration",
+                "src": "152:12:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "matchId",
+                  "scope": 19,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 13,
+                    "name": "ElementaryTypeName",
+                    "src": "168:4:0"
+                  }
+                ],
+                "id": 14,
+                "name": "VariableDeclaration",
+                "src": "168:12:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "bets",
+                  "scope": 19,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "mapping(address => struct Wager.Bet storage ref)",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "type": "mapping(address => struct Wager.Bet storage ref)"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 15,
+                        "name": "ElementaryTypeName",
+                        "src": "192:7:0"
+                      },
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Bet",
+                          "referencedDeclaration": 8,
+                          "type": "struct Wager.Bet storage pointer"
+                        },
+                        "id": 16,
+                        "name": "UserDefinedTypeName",
+                        "src": "203:3:0"
+                      }
+                    ],
+                    "id": 17,
+                    "name": "Mapping",
+                    "src": "184:23:0"
+                  }
+                ],
+                "id": 18,
+                "name": "VariableDeclaration",
+                "src": "184:28:0"
+              }
+            ],
+            "id": 19,
+            "name": "StructDefinition",
+            "src": "112:105:0"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Wager.Bet",
+              "name": "wagers",
+              "scope": 93,
+              "visibility": "public",
+              "constant": false,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(uint256 => struct Wager.WagerEvent storage ref)",
+              "value": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "amount",
+                  "scope": 90,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "mapping(uint256 => struct Wager.WagerEvent storage ref)",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 20,
+                    "name": "ElementaryTypeName",
+                    "src": "228:4:0"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "WagerEvent",
+                      "referencedDeclaration": 19,
+                      "type": "struct Wager.WagerEvent storage pointer"
+                    },
+                    "id": 21,
+                    "name": "UserDefinedTypeName",
+                    "src": "236:10:0"
+                  }
+                ],
+                "id": 22,
+                "name": "Mapping",
+                "src": "220:27:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "redWins",
+                  "scope": 90,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bool",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 88,
+                    "name": "ElementaryTypeName",
+                    "src": "113:4:2"
+                  }
+                ],
+                "id": 89,
+                "name": "VariableDeclaration",
+                "src": "113:12:2"
+              }
+            ],
+            "id": 23,
+            "name": "VariableDeclaration",
+            "src": "220:41:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "Wager",
+              "scope": 93,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(address => struct Wager.Bet storage ref)",
+              "value": null,
+              "visibility": "public",
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "payable": false,
+              "stateMutability": "nonpayable",
+              "superFunction": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(address => struct Wager.Bet storage ref)",
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 91,
+                    "name": "ElementaryTypeName",
+                    "src": "140:7:2"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Bet",
+                      "referencedDeclaration": 90,
+                      "type": "struct Wager.Bet storage pointer"
+                    },
+                    "id": 92,
+                    "name": "UserDefinedTypeName",
+                    "src": "151:3:2"
+                  }
+                ],
+                "id": 24,
+                "name": "ParameterList",
+                "src": "279:2:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 25,
+                "name": "ParameterList",
+                "src": "281:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 26,
+                "name": "Block",
+                "src": "281:5:0"
+              }
+            ],
+            "id": 27,
+            "name": "FunctionDefinition",
+            "src": "265:21:0"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getMoneyPool",
+              "payable": false,
+              "scope": 93,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "wagerEventId",
+                      "scope": 40,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 28,
+                        "name": "ElementaryTypeName",
+                        "src": "311:4:0"
+                      }
+                    ],
+                    "id": 29,
+                    "name": "VariableDeclaration",
+                    "src": "311:17:0"
+                  }
+                ],
+                "id": 30,
+                "name": "ParameterList",
+                "src": "310:19:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "theMoneyPool",
+                      "scope": 40,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 31,
+                        "name": "ElementaryTypeName",
+                        "src": "355:4:0"
+                      }
+                    ],
+                    "id": 32,
+                    "name": "VariableDeclaration",
+                    "src": "355:17:0"
+                  }
+                ],
+                "id": 33,
+                "name": "ParameterList",
+                "src": "354:19:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256",
+                          "member_name": "moneyPool",
+                          "referencedDeclaration": 10
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 85,
+                              "type": "struct Wager.WagerEvent storage ref",
+                              "value": "matchId",
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false
+                            },
+                            "id": 36,
+                            "name": "IndexAccess",
+                            "src": "384:20:0",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 23,
+                                  "type": "mapping(uint256 => struct Wager.WagerEvent storage ref)",
+                                  "value": "wagers"
+                                },
+                                "id": 34,
+                                "name": "Identifier",
+                                "src": "384:6:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 29,
+                                  "type": "uint256",
+                                  "value": "wagerEventId"
+                                },
+                                "id": 35,
+                                "name": "Identifier",
+                                "src": "391:12:0"
+                              }
+                            ]
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 96,
+                              "type": "uint256",
+                              "value": "newId"
+                            },
+                            "id": 100,
+                            "name": "Identifier",
+                            "src": "211:5:2"
+                          }
+                        ],
+                        "id": 37,
+                        "name": "MemberAccess",
+                        "src": "384:30:0"
+                      }
+                    ],
+                    "id": 38,
+                    "name": "Return",
+                    "src": "377:37:0",
+                    "attributes": {
+                      "functionReturnParameters": 33
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 83,
+                              "type": "uint256",
+                              "value": "moneyPool"
+                            },
+                            "id": 103,
+                            "name": "Identifier",
+                            "src": "220:9:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 104,
+                            "name": "Literal",
+                            "src": "232:1:2"
+                          }
+                        ],
+                        "id": 105,
+                        "name": "Assignment",
+                        "src": "220:13:2"
+                      }
+                    ],
+                    "id": 106,
+                    "name": "ExpressionStatement",
+                    "src": "220:13:2"
+                  }
+                ],
+                "id": 39,
+                "name": "Block",
+                "src": "373:45:0"
+              }
+            ],
+            "id": 40,
+            "name": "FunctionDefinition",
+            "src": "289:129:0"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getMatchId",
+              "payable": false,
+              "scope": 93,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "wagerEventId",
+                      "scope": 53,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 41,
+                        "name": "ElementaryTypeName",
+                        "src": "441:4:0"
+                      }
+                    ],
+                    "id": 42,
+                    "name": "VariableDeclaration",
+                    "src": "441:17:0"
+                  }
+                ],
+                "id": 43,
+                "name": "ParameterList",
+                "src": "440:19:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "theMatchId",
+                      "scope": 53,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 44,
+                        "name": "ElementaryTypeName",
+                        "src": "485:4:0"
+                      }
+                    ],
+                    "id": 45,
+                    "name": "VariableDeclaration",
+                    "src": "485:15:0"
+                  }
+                ],
+                "id": 46,
+                "name": "ParameterList",
+                "src": "484:17:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 46
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 14,
+                          "type": "uint256",
+                          "value": "moneyPool",
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "member_name": "matchId"
+                        },
+                        "id": 50,
+                        "name": "MemberAccess",
+                        "src": "512:28:0",
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "struct Wager.WagerEvent storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 23,
+                                  "type": "mapping(uint256 => struct Wager.WagerEvent storage ref)",
+                                  "value": "wagers"
+                                },
+                                "id": 47,
+                                "name": "Identifier",
+                                "src": "512:6:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 42,
+                                  "type": "uint256",
+                                  "value": "wagerEventId"
+                                },
+                                "id": 48,
+                                "name": "Identifier",
+                                "src": "519:12:0"
+                              }
+                            ],
+                            "id": 49,
+                            "name": "IndexAccess",
+                            "src": "512:20:0"
+                          }
+                        ]
+                      }
+                    ],
+                    "id": 51,
+                    "name": "Return",
+                    "src": "505:35:0"
+                  }
+                ],
+                "id": 52,
+                "name": "Block",
+                "src": "501:43:0"
+              }
+            ],
+            "id": 53,
+            "name": "FunctionDefinition",
+            "src": "421:123:0"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getNumBets",
+              "payable": false,
+              "scope": 93,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "wagerEventId",
+                      "scope": 66,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 54,
+                        "name": "ElementaryTypeName",
+                        "src": "567:4:0"
+                      }
+                    ],
+                    "id": 55,
+                    "name": "VariableDeclaration",
+                    "src": "567:17:0"
+                  }
+                ],
+                "id": 56,
+                "name": "ParameterList",
+                "src": "566:19:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "theNumBets",
+                      "scope": 66,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 57,
+                        "name": "ElementaryTypeName",
+                        "src": "610:4:0"
+                      }
+                    ],
+                    "id": 58,
+                    "name": "VariableDeclaration",
+                    "src": "610:15:0"
+                  }
+                ],
+                "id": 59,
+                "name": "ParameterList",
+                "src": "609:17:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 59
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 12,
+                          "type": "uint256",
+                          "value": "matchId",
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "member_name": "numBets"
+                        },
+                        "id": 63,
+                        "name": "MemberAccess",
+                        "src": "637:29:0",
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "struct Wager.WagerEvent storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 23,
+                                  "type": "mapping(uint256 => struct Wager.WagerEvent storage ref)",
+                                  "value": "wagers"
+                                },
+                                "id": 60,
+                                "name": "Identifier",
+                                "src": "637:6:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 55,
+                                  "type": "uint256",
+                                  "value": "wagerEventId"
+                                },
+                                "id": 61,
+                                "name": "Identifier",
+                                "src": "644:12:0"
+                              }
+                            ],
+                            "id": 62,
+                            "name": "IndexAccess",
+                            "src": "637:20:0"
+                          }
+                        ]
+                      }
+                    ],
+                    "id": 64,
+                    "name": "Return",
+                    "src": "630:36:0"
+                  }
+                ],
+                "id": 65,
+                "name": "Block",
+                "src": "626:44:0"
+              }
+            ],
+            "id": 66,
+            "name": "FunctionDefinition",
+            "src": "547:123:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "makeBet",
+              "payable": true,
+              "scope": 93,
+              "stateMutability": "payable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "wagerEventId",
+                      "scope": 82,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 67,
+                        "name": "ElementaryTypeName",
+                        "src": "690:4:0"
+                      }
+                    ],
+                    "id": 68,
+                    "name": "VariableDeclaration",
+                    "src": "690:17:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "isRedWinner",
+                      "scope": 82,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 69,
+                        "name": "ElementaryTypeName",
+                        "src": "709:4:0"
+                      }
+                    ],
+                    "id": 70,
+                    "name": "VariableDeclaration",
+                    "src": "709:16:0"
+                  }
+                ],
+                "id": 71,
+                "name": "ParameterList",
+                "src": "689:37:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 72,
+                "name": "ParameterList",
+                "src": "735:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "+=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "moneyPool",
+                              "referencedDeclaration": 10,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Wager.WagerEvent storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 23,
+                                      "type": "mapping(uint256 => struct Wager.WagerEvent storage ref)",
+                                      "value": "wagers"
+                                    },
+                                    "id": 73,
+                                    "name": "Identifier",
+                                    "src": "760:6:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 68,
+                                      "type": "uint256",
+                                      "value": "wagerEventId"
+                                    },
+                                    "id": 74,
+                                    "name": "Identifier",
+                                    "src": "767:12:0"
+                                  }
+                                ],
+                                "id": 75,
+                                "name": "IndexAccess",
+                                "src": "760:20:0"
+                              }
+                            ],
+                            "id": 76,
+                            "name": "MemberAccess",
+                            "src": "760:30:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "value",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 105,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 77,
+                                "name": "Identifier",
+                                "src": "794:3:0"
+                              }
+                            ],
+                            "id": 78,
+                            "name": "MemberAccess",
+                            "src": "794:9:0"
+                          }
+                        ],
+                        "id": 79,
+                        "name": "Assignment",
+                        "src": "760:43:0"
+                      }
+                    ],
+                    "id": 80,
+                    "name": "ExpressionStatement",
+                    "src": "760:43:0"
+                  }
+                ],
+                "id": 81,
+                "name": "Block",
+                "src": "735:72:0"
+              }
+            ],
+            "id": 82,
+            "name": "FunctionDefinition",
+            "src": "673:134:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "checkWagerEvent",
+              "payable": false,
+              "scope": 93,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "wagerEventId",
+                      "scope": 92,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 83,
+                        "name": "ElementaryTypeName",
+                        "src": "838:4:0"
+                      }
+                    ],
+                    "id": 84,
+                    "name": "VariableDeclaration",
+                    "src": "838:17:0"
+                  }
+                ],
+                "id": 85,
+                "name": "ParameterList",
+                "src": "837:19:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "success",
+                      "scope": 92,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 86,
+                        "name": "ElementaryTypeName",
+                        "src": "866:4:0"
+                      }
+                    ],
+                    "id": 87,
+                    "name": "VariableDeclaration",
+                    "src": "866:12:0"
+                  }
+                ],
+                "id": 88,
+                "name": "ParameterList",
+                "src": "865:14:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 88
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "74727565",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "bool",
+                          "type": "bool",
+                          "value": "true"
+                        },
+                        "id": 89,
+                        "name": "Literal",
+                        "src": "897:4:0"
+                      }
+                    ],
+                    "id": 90,
+                    "name": "Return",
+                    "src": "890:11:0"
+                  }
+                ],
+                "id": 91,
+                "name": "Block",
+                "src": "880:28:0"
+              }
+            ],
+            "id": 92,
+            "name": "FunctionDefinition",
+            "src": "813:95:0"
+          }
+        ],
+        "id": 93,
+        "name": "ContractDefinition",
+        "src": "25:886:0"
+      }
+    ],
+    "id": 94,
+    "name": "SourceUnit",
+    "src": "0:916:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {
+    "4447": {
+      "events": {},
+      "links": {},
+      "address": "0xf25186b5081ff5ce73482ad761db0eb0d25abfbf"
+    }
+  },
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2017-11-25T08:20:45.199Z"
+}
