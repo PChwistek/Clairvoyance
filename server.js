@@ -1,13 +1,13 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();
+app.use(cors());
 var expressWs = require('express-ws')(app);
-const cors = require('cors');
 var clairvoyanceRouter = require('./expressRoutes/clairvoyanceRouter.js');
 const keys = require('./pandaScoreKeys');
 var ClientSocket = require('ws');
 
 app.use('/', clairvoyanceRouter); //for REST
-app.use(cors());
 
 app.use(function (req, res, next) {
   console.log('middleware');
@@ -30,13 +30,13 @@ app.ws('/:match_id', function(ws, req) {
 
   var pandaSocket;
   if(req.params.match_id == 'test'){
-	pandaSocket = new ClientSocket('wss://live.test.pandascore.co/matches/28125?token=' + keys.token);
+	 pandaSocket = new ClientSocket('wss://live.test.pandascore.co/matches/28125?token=' + keys.token);
   } else {
-	pandaSocket = new ClientSocket("wss://live.pandascore.co/matches/" + req.params.match_id + "?token=" + keys.token);
+	 pandaSocket = new ClientSocket("wss://live.pandascore.co/matches/" + req.params.match_id + "?token=" + keys.token);
   }
 
   pandaSocket.onmessage = function(event) {
-	ws.send(event.data);
+	 ws.send(event.data);
   }
 	
 });
