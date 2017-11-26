@@ -68,7 +68,7 @@ contract Wager is owned {
 		return true;
 	}
 
-	function endTakingBets(uint wagerEventId) public onlyOwner {
+	function stopBetting(uint wagerEventId) public onlyOwner {
 	    require(wagers[wagerEventId].takingBets == true);
 		WagerEvent storage w = wagers[wagerEventId];
 		w.takingBets = false;
@@ -159,6 +159,10 @@ contract Wager is owned {
 
 	function getNumBetsFor(uint wagerEventId) public constant returns(uint theNumBets){
 		return wagers[wagerEventId].numBetsFor;
+	}
+
+	function getTakingBets(uint wagerEventId) public constant returns(bool){
+		return wagers[wagerEventId].takingBets;
 	}
 
 }
