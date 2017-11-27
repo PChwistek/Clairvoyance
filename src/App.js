@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       storageValue: 0,
       web3: null,
-      currentMatches: [{id: 'test', isOngoing: true , game: 'league-of-legends', gameData: {}}]
+      liveMatches: [], //for future dev, to grab real live events
+      currentMatches: [] //for test event
     }
   }
 
@@ -41,23 +42,19 @@ class App extends Component {
     axios.get(`http://localhost:3000/live/`)
       .then(res => {
         var tempList = res.data;
-        var temp = {};
-        for (var i = tempList.length - 1; i >= 0; i--) {
-          temp = {
-            id: tempList[i].endpoints[0].match_id,
-            isOngoing: true,
-            game: tempList[i].event.game,
-            gameData: {}
-          };
-          this.state.currentMatches.push(temp);
-        };
-        console.log(this.state.currentMatches);
-    }).catch(() => {
+        this.setState({
+          liveMatches : tempList
+        })
+        console.log(this.state.liveMatches);
+    }).catch((e) => {
       console.log('Error connecting to REST part of server');
+      console.log(e);
     });
 
-    //get socket, eventually, this should be for any live event
-    var socket = new WebSocket('ws://localhost:3000/' + this.state.currentMatches[0].id)
+    //get socket, eventually, this should be for any live event, but for now defaults to test
+    var socket = new WebSocket('ws://localhost:3000/test');
+    
+
     socket.onopen = function(){
       socket.send("Hellooooo from the other side!")
     }
@@ -66,12 +63,7 @@ class App extends Component {
       var temp = JSON.parse(event.data);
       var tempMatches = this.state.currentMatches;
 
-      try{
-        tempMatches[0].isOngoing = !temp.game.finished; //just for ease of access
-        tempMatches[0].gameData = temp;
-      } catch(error){
-      //  console.log(error);
-      }
+      tempMatches[0] = temp;
 
       this.setState({
         currentMatches : tempMatches

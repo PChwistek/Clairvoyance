@@ -38,8 +38,8 @@ contract Wager is owned {
 	}
 
 	event TakingBets(uint _wagerEventId, bool _isBetting);
-	event MakeBet(address _better, uint amount, uint _wagerEventId, uint clientId, bool _redWins);
-	event Outcome(address _better, uint amount, uint wagerEventId, bool won);
+	event Distributable(bool _enoughToDistribute, bool _isBetting);
+	event MakeBet(address _better, uint _amount, uint _wagerEventId, uint _clientId, bool _redWins);
 
 	mapping(uint => WagerEvent) public wagers;
 	uint numWagerEvents;
@@ -72,29 +72,26 @@ contract Wager is owned {
 	    require(wagers[wagerEventId].takingBets == true);
 		WagerEvent storage w = wagers[wagerEventId];
 		w.takingBets = false;
-		TakingBets(wagerEventId, w.takingBets);
+		bool moneyPoolSufficient = w.moneyPoolFor > 0 && w.moneyPoolAgainst > 0;
+		Distributable(moneyPoolSufficient, w.takingBets);
 	}
 
     function distributeMoney(uint wagerEventId , bool redWon) public onlyOwner returns (bool success) {
     	WagerEvent storage w = wagers[wagerEventId]; 
-    	uint totalMoneyPool = w.moneyPoolFor + w.moneyPoolAgainst;
-    	require(w.moneyPoolFor > 0 && w.moneyPoolAgainst > 0 && totalMoneyPool > 0);
+    	bool moneyPoolSufficient = w.moneyPoolFor > 0 && w.moneyPoolAgainst > 0;
+    	require(moneyPoolSufficient);
     	require(w.takingBets == false);
 
+    	uint totalMoneyPool = w.moneyPoolFor + w.moneyPoolAgainst;
     	uint moneyPoolRemaining = totalMoneyPool;
     	uint moneyToDistribute;
 
-    	if(redWon){ // this is ugly, but it works
+    	if(redWon){ // this is ugly, but you can't pass reference pointers for items in storage easily
 
 	    	for(uint i = 0; i < w.numBetsFor; i++){
 	    		moneyToDistribute = (w.betsFor[i].amount * totalMoneyPool) / w.moneyPoolFor;
 	    		w.betsFor[i].clientAddr.transfer(moneyToDistribute);
     		    moneyPoolRemaining = moneyPoolRemaining - moneyToDistribute;
-    		    Outcome(w.betsFor[i].clientAddr, moneyToDistribute, wagerEventId, true);
-	    	}
-
-	    	for(uint g = 0; g < w.numBetsAgainst; g++){
-	    		Outcome(w.betsAgainst[g].clientAddr, w.betsAgainst[g].amount, wagerEventId, false);
 	    	}
 
 	 	} else {
@@ -103,11 +100,6 @@ contract Wager is owned {
 	    		moneyToDistribute = (w.betsAgainst[i].amount * totalMoneyPool) / w.moneyPoolAgainst;
 	    		w.betsAgainst[j].clientAddr.transfer(moneyToDistribute);
 	    		moneyPoolRemaining = moneyPoolRemaining - moneyToDistribute;
-	    		Outcome(w.betsFor[i].clientAddr, moneyToDistribute, wagerEventId, true);
-	    	}
-
-	    	for(uint y = 0; y < w.numBetsAgainst; y++){
-	    		Outcome(w.betsAgainst[y].clientAddr, w.betsAgainst[y].amount, wagerEventId, false);
 	    	}
 	 	}
 
@@ -134,6 +126,7 @@ contract Wager is owned {
         for(uint j = 0; j < w.numBetsAgainst; j++){
 	        w.betsAgainst[j].clientAddr.transfer(w.betsAgainst[j].amount);
 	    }
+	    
     }
 
     
