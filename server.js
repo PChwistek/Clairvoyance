@@ -44,7 +44,7 @@ pandaSocket.onmessage = function(event) {
 
         if(tempData.type != 'hello'){
 
-          currentMatch = wager.requestNewWager(currentMatch);
+          currentMatch = wager.requestNewWager();
           currentMatch.gameData = tempData;
 
         }
