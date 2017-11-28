@@ -113,7 +113,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Router />
+      <Router gameData={this.state.currentMatches}/>
       </div>
     );
   }

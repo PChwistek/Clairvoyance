@@ -1,14 +1,33 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+
 import {
   BrowserRouter,
   Route,
   Link
 } from 'react-router-dom'
 
+var text = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
+import BettingDetail from './BettingDetail'
+
+const routes = [
+  
+  { path: '/',
+    mainText: () => <div><h1 className="title">An eSports Betting Platform</h1><h2 className="subtitle">{text}</h2></div>,
+    exact: true,
+    main: () => Home,
+  },
+  {
+    path: '/tournaments',
+    mainText: () => <div><h1 className="title">Bet on Pro Games</h1><h2 className="subtitle"> *Not implemented</h2></div>,
+    main: () => Tournaments,
+  }
+]
+
 const Router = () => (
   <BrowserRouter>
     <div>
-
       <section className="hero is-info is-medium is-bold">
         <div className="hero-head">
           <nav className="navbar">
@@ -21,10 +40,7 @@ const Router = () => (
               <div id="navbarMenu" className="navbar-menu">
                 <div className="navbar-end">
                   <div className="navbar-item">
-                    <Link to="/topics" className="nav-item"> <span className="nav-item"> Wagers </span> </Link>
-                  </div>
-                  <div className="navbar-item">
-                    <Link to="/about" > <span className="nav-item"> About </span></Link>
+                    <Link to="/tournaments" className="nav-item"> <span className="nav-item"> Pro Games </span> </Link>
                   </div>
                   <div className="navbar-item">
                     <Link to="https://github.com/PChwistek/Clairvoyance" target="_blank">
@@ -41,75 +57,74 @@ const Router = () => (
             </div>
           </nav>
         </div>
+        <div className="hero-body">
+        <div className="container has-text-centered">
+          {routes.map((route, index, gameData) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              component={route.mainText}
+            />
+          ))}
+      </div>
+      </div>
       </section>
 
-      <hr/>
+      <Route exact path="/" render={()=><Home />}/>
+      <Route path="/tournaments" component={Tournaments}/>
+      <Footer />
 
-      <Route exact path="/" component={Home}/>
-      <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topics}/>
     </div>
   </BrowserRouter>
 )
 
-const Navbar = () => (
-  <section className="hero is-info is-medium is-bold">
-    <div className="hero-head">
-      <nav className="navbar">
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/"><Image source='./logo.png'/></Link>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </section>
-)
-
 const Home = () => (
   <div>
-    <h2>Home</h2>
+    <Card />
+    <Divider />
+    <BettingDetail />
   </div>
 )
 
-const About = () => (
+const Tournaments = ({ match }) => (
   <div>
-    <h2>About</h2>
   </div>
 )
 
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/rendering`}>
-          Rendering with React
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/components`}>
-          Components
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/props-v-state`}>
-          Props v. State
-        </Link>
-      </li>
-    </ul>
-
-    <Route path={`${match.url}/:topicId`} component={Topic}/>
-    <Route exact path={match.url} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-)
-
-const Topic = ({ match }) => (
+const Tournament = ({ match }) => (
   <div>
     <h3>{match.params.topicId}</h3>
   </div>
 )
+
+const Card = () => (
+  <div className="box cta">
+    <p className="has-text-centered">
+      <span className="tag is-primary">New</span> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+  </div>
+)
+
+const Divider = () => (
+  <div className="intro column is-8 is-offset-2">
+        <h2 className="title">Perfect for developers or designers!</h2><br></br>
+        <p className="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
+  </div>
+)
+
+const Footer = () => (
+  <footer className="footer">
+    <div className="container">
+      <div className="content has-text-centered">
+        <p> CSS is based on a template by <a href="https://github.com/dansup" target="_blank">Daniel Supernault</a></p>
+      </div>
+    </div>
+  </footer>
+)
+
+ReactDOM.render(<Divider />, document.getElementById('root'))
+ReactDOM.render(<Card />, document.getElementById('root'))
+ReactDOM.render(<Footer />, document.getElementById('root'))
 
 export default Router
