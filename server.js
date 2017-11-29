@@ -85,6 +85,7 @@ pandaSocket.onmessage = function(event) {
     tempMatch.blueTeamName = data.blue.name;
     tempMatch.redTowers = data.red.towers;
     tempMatch.blueTowers = data.blue.towers;
+    tempMatch.timestamp = data.current_timestamp;
     tempMatch.bluePlayers = [ 
       data.blue.players.top.name,
       data.blue.players.jun.name,

@@ -49,7 +49,7 @@ class BettingDetail extends React.Component{
     			<br></br>
     		   </article>
     		 </div>
-    		 <Video />
+    		 <Video time={this.props.currentMatch.timestamp}/>
     	    </div>
     	  </div>
         </section>
@@ -59,27 +59,45 @@ class BettingDetail extends React.Component{
 
 
 
-const Video = () => (
+const Video = ({time}) => (
   <div className="tile is-parent">
 	<article className="tile is-child has-text-centered">
 	  <div className="content">
-	  	<Game />
+	  	<Game time ={time}/>
 	  </div>
 	</article>
   </div>
 )
 
 class Game extends React.Component {
+
+  constructor(props){
+  	super(props);
+  	this.state = {
+  		time: 0,
+  		render : false
+  	}
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    
+    return typeof this.props.time === 'undefined';
+  }
+
   render() {
+
+
     const opts = {
       height: '390',
       width: '640',
       playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 1
+        autoplay: 1,
+        loop: 1,
+        start: this.props.time
       }
     };
- 
-    return (<YouTube videoId="61NdhI5TzOM" opts={opts} onReady={this._onReady}/>);
+ 	
+ 	return (<YouTube videoId="61NdhI5TzOM" opts={opts} onReady={this._onReady}/>);
 
   }
  
