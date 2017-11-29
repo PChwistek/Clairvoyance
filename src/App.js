@@ -17,11 +17,22 @@ class App extends Component {
     super(props)
 
     this.state = {
-      storageValue: 0,
       web3: null,
       liveMatches: [], //for future dev, to grab real live events
-      currentMatches: [] //for test event
+      wagerInstance: null,
+      currentMatches: [null], //for test event
+      account: null
     }
+  }
+
+  handleBet = (redWins) => {
+
+    this.state.wagerInstance.makeBet(this.state.currentMatch.wagerEventId, redWins, {from: this.state.account}).then(function(result){
+      console.log("made bet");
+    }).catch(function (e){
+      console.log(e);
+    }); 
+
   }
 
   componentWillMount() {
@@ -43,21 +54,34 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3000/live/`)
+
+    axios.get('http://localhost:4040/live/')
       .then(res => {
         var tempList = res.data;
         this.setState({
           liveMatches : tempList
         })
-        console.log(this.state.liveMatches);
     }).catch((e) => {
-      console.log('Error connecting to REST part of server');
+      console.log("No live matches at this time.");
+    });
+
+    //get initial currentMatch info faster than through a websocket
+
+    axios.get('http://localhost:4040/currentMatch/').then(res => {
+      var temp = res.data;
+      var tempMatches = this.state.currentMatches;
+      tempMatches[0] = temp;
+      this.setState({
+        currentMatches : tempMatches
+      })
+      console.log(this.state.currentMatches[0]);
+    }).catch((e) => {
       console.log(e);
     });
 
+
     //get socket, eventually, this should be for any live event, but for now defaults to test
-    var socket = new WebSocket('ws://localhost:3000/test');
-    
+    var socket = new WebSocket('ws://localhost:4040/test');
 
     socket.onopen = function(){
       socket.send("Hellooooo from the other side!")
@@ -66,54 +90,36 @@ class App extends Component {
 
       var temp = JSON.parse(event.data);
       var tempMatches = this.state.currentMatches;
-
       tempMatches[0] = temp;
-
       this.setState({
         currentMatches : tempMatches
       })
-
       console.log(this.state.currentMatches[0]);
-
     }
+
   }
 
   instantiateContract() {
-    /*
-     * SMART CONTRACT EXAMPLE
-     *
-     * Normally these functions would be called in the context of a
-     * state management library, but for convenience I've placed them here.
-     */
 
     const contract = require('truffle-contract')
     const WagerContract = contract(WagerContractJSON)
     WagerContract.setProvider(this.state.web3.currentProvider)
 
-    // Declaring this for later so we can chain functions on SimpleStorage.
-    /*var simpleStorageInstance
-
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
-      simpleStorage.deployed().then((instance) => {
-        simpleStorageInstance = instance
-
-        // Stores a given value, 5 by default.
-        return simpleStorageInstance.set(5, {from: accounts[0]})
-      }).then((result) => {
+      WagerContract.deployed().then((instance) => {
+        this.state.wagerInstance = instance
+        this.state.account = accounts[0]
+      }).catch((e) => {
         // Get the value from the contract to prove it worked.
-        return simpleStorageInstance.get.call(accounts[0])
-      }).then((result) => {
-        // Update state with the result.
-        return this.setState({ storageValue: result.c[0] })
-      })
-    })*/
+      });
+    })
   }
 
   render() {
     return (
       <div className="App">
-      <Router gameData={this.state.currentMatches}/>
+      <Router currentMatch={this.state.currentMatches[0] !== null ? this.state.currentMatches[0]: ''}/>
       </div>
     );
   }

@@ -25,7 +25,7 @@ const routes = [
   }
 ]
 
-const Router = () => (
+const Router = ({currentMatch}) => (
   <BrowserRouter>
     <div>
       <section className="hero is-info is-medium is-bold">
@@ -59,7 +59,7 @@ const Router = () => (
         </div>
         <div className="hero-body">
         <div className="container has-text-centered">
-          {routes.map((route, index, gameData) => (
+          {routes.map((route, index) => (
             <Route
               key={index}
               path={route.path}
@@ -71,7 +71,7 @@ const Router = () => (
       </div>
       </section>
 
-      <Route exact path="/" render={()=><Home />}/>
+      <Route exact path="/" render={()=><Home currentMatch={currentMatch}/>}/>
       <Route path="/tournaments" component={Tournaments}/>
       <Footer />
 
@@ -79,11 +79,11 @@ const Router = () => (
   </BrowserRouter>
 )
 
-const Home = () => (
+const Home = ({currentMatch}) => (
   <div>
     <Card />
     <Divider />
-    <BettingDetail />
+    <BettingDetail currentMatch={currentMatch} />
   </div>
 )
 

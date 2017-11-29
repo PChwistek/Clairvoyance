@@ -72,3 +72,7 @@ html,body {
  color: #209cee;
 }
 
+.no-bullet{
+  list-style-type: none;
+}
+
