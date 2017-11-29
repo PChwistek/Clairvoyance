@@ -7,14 +7,16 @@ import {
   Link
 } from 'react-router-dom'
 
-var text = " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+var text = "Built with Solidity, Truffle, React, Node.js, and Bulma.";
+var text2 = "Data provided by Pandascore."
+var disclaimer = "For simplicity, this project does not follow how actual gambling works."
 
 import BettingDetail from './BettingDetail'
 
 const routes = [
   
   { path: '/',
-    mainText: () => <div><h1 className="title">An eSports Betting Platform</h1><h2 className="subtitle">{text}</h2></div>,
+    mainText: () => <div><h1 className="title">A Decentralized eSports Betting Platform.</h1><h2 className="subtitle">{text} <br></br> {text2}</h2></div>,
     exact: true,
     main: () => Home,
   },
@@ -101,15 +103,16 @@ const Tournament = ({ match }) => (
 const Card = () => (
   <div className="box cta">
     <p className="has-text-centered">
-      <span className="tag is-primary">New</span> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      <span className="tag is-primary">!</span> {disclaimer}
     </p>
   </div>
 )
 
 const Divider = () => (
   <div className="intro column is-8 is-offset-2">
-        <h2 className="title">Please open your MetaMask extension and try betting on the game below!</h2><br></br>
-        <p className="subtitle">Ideally, you would want to bet before a game starts, but since that API is 250 dollars a month, we are just using a test endpoint and its respective game feed.</p>
+        <h2 className="title">Open MetaMask and try betting on the game below!</h2><br></br>
+        <p className="subtitle">Try using different accounts and then seeing how funds are distributed once the game ends.</p>
+        <p className="subtitle">The game is on loop. (Hint: Blue wins!)</p>
   </div>
 )
 

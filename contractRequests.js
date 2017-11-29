@@ -53,19 +53,20 @@ var wager = {
     requestStopBetting: function(tempMatch){
 
     	wagerInstance.stopBetting(tempMatch.wagerEventId, {from: account_one}).then(function(result){
-          console.log("stopped taking bets");
-          for (var i = 0; i < result.logs.length; i++) {
-            var log = result.logs[i];
 
-            if (log.event == 'Distributable') {
-              tempMatch.takingBets = log.args._isBetting;
-              this.canDistribute = log.args._enoughToDistribute;
-            }
-        }
+        console.log("stopped taking bets");
+        for (var i = 0; i < result.logs.length; i++) {
+          var log = result.logs[i];
 
-        }).catch(function (e){
-            console.log(e);
-        }); 
+          if (log.event == 'Distributable') {
+            tempMatch.takingBets = log.args._isBetting;
+            this.canDistribute = log.args._enoughToDistribute;
+          }
+      }
+
+      }).catch(function (e){
+          console.log(e);
+      }); 
 
         return tempMatch;
     },
@@ -78,7 +79,6 @@ var wager = {
       }).catch(function (e){
         console.log(e);
       }); 
-
     },
 
     requestReturnMoney: function(tempMatch){
@@ -88,7 +88,6 @@ var wager = {
       }).catch(function (e){
         console.log(e);
       }); 
-
     },
 
     getUpdateMoneyPool: function(tempMatch){

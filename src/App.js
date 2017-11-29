@@ -108,32 +108,35 @@ class App extends Component {
     })
   }
 
-  handleBet = (redWins, amount) => {
+  handleBet = (redWins) => {
 
-   console.log(redWins);
+    console.log(redWins);
 
-   this.state.web3.eth.getAccounts((error, accounts) => {
+    this.state.web3.eth.getAccounts((error, accounts) => {
+
       this.setState({
-        account : accounts[0]
-      })
-    });
+        account: accounts[0]
+      });
 
-    this.state.wagerInstance.makeBet(this.state.currentMatches[0].wagerEventId, redWins,
-     {value: amount * 1000000000000000000,from: this.state.account}).then(function(result){
+      this.state.wagerInstance.makeBet(this.state.currentMatches[0].wagerEventId, redWins, 
+        {value: 1000000000000000000 ,from: this.state.account})
+        .then(function(result){
 
-      console.log("made bet");
-      for (var i = 0; i < result.logs.length; i++) {
-        var log = result.logs[i];
+          console.log("made bet");
 
-        if (log.event == "MakeBet") {
-          console.log(log.args._amount.toNumber());
-          break;
-        }
-      }
+          for (var i = 0; i < result.logs.length; i++) {
+            var log = result.logs[i];
 
-    }).catch(function (e){
-      console.log(e);
-    }); 
+            if (log.event == "MakeBet") {
+              console.log(log);
+              break;
+            }
+          }
+
+        });
+
+    })
+
 
   }
 
