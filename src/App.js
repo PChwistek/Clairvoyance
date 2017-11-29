@@ -25,16 +25,6 @@ class App extends Component {
     }
   }
 
-  handleBet = (redWins) => {
-
-    this.state.wagerInstance.makeBet(this.state.currentMatch.wagerEventId, redWins, {from: this.state.account}).then(function(result){
-      console.log("made bet");
-    }).catch(function (e){
-      console.log(e);
-    }); 
-
-  }
-
   componentWillMount() {
     // Get network provider and web3 instance.
     // See utils/getWeb3 for more info.
@@ -108,18 +98,49 @@ class App extends Component {
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
       WagerContract.deployed().then((instance) => {
-        this.state.wagerInstance = instance
-        this.state.account = accounts[0]
-      }).catch((e) => {
-        // Get the value from the contract to prove it worked.
+        this.setState({
+          wagerInstance : instance,
+          account : accounts[0]
+        })
+      }).then((result) => {
+        console.log(this.state.account);
       });
     })
+  }
+
+  handleBet = (redWins, amount) => {
+
+   console.log(redWins);
+
+   this.state.web3.eth.getAccounts((error, accounts) => {
+      this.setState({
+        account : accounts[0]
+      })
+    });
+
+    this.state.wagerInstance.makeBet(this.state.currentMatches[0].wagerEventId, redWins,
+     {value: amount * 1000000000000000000,from: this.state.account}).then(function(result){
+
+      console.log("made bet");
+      for (var i = 0; i < result.logs.length; i++) {
+        var log = result.logs[i];
+
+        if (log.event == "MakeBet") {
+          console.log(log.args._amount.toNumber());
+          break;
+        }
+      }
+
+    }).catch(function (e){
+      console.log(e);
+    }); 
+
   }
 
   render() {
     return (
       <div className="App">
-      <Router currentMatch={this.state.currentMatches[0] !== null ? this.state.currentMatches[0]: ''}/>
+      <Router currentMatch={this.state.currentMatches[0] !== null ? this.state.currentMatches[0]: ''} handleBetCallback={this.handleBet}/>
       </div>
     );
   }

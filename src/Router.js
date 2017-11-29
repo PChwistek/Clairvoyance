@@ -25,7 +25,7 @@ const routes = [
   }
 ]
 
-const Router = ({currentMatch}) => (
+const Router = ({currentMatch, handleBetCallback}) => (
   <BrowserRouter>
     <div>
       <section className="hero is-info is-medium is-bold">
@@ -71,7 +71,7 @@ const Router = ({currentMatch}) => (
       </div>
       </section>
 
-      <Route exact path="/" render={()=><Home currentMatch={currentMatch}/>}/>
+      <Route exact path="/" render={()=><Home currentMatch={currentMatch} handleBetCallback={handleBetCallback}/>}/>
       <Route path="/tournaments" component={Tournaments}/>
       <Footer />
 
@@ -79,11 +79,11 @@ const Router = ({currentMatch}) => (
   </BrowserRouter>
 )
 
-const Home = ({currentMatch}) => (
+const Home = ({currentMatch, handleBetCallback}) => (
   <div>
     <Card />
     <Divider />
-    <BettingDetail currentMatch={currentMatch} />
+    <BettingDetail currentMatch={currentMatch} handleBetCallback={handleBetCallback} />
   </div>
 )
 
@@ -108,8 +108,8 @@ const Card = () => (
 
 const Divider = () => (
   <div className="intro column is-8 is-offset-2">
-        <h2 className="title">Perfect for developers or designers!</h2><br></br>
-        <p className="subtitle">Vel fringilla est ullamcorper eget nulla facilisi. Nulla facilisi nullam vehicula ipsum a. Neque egestas congue quisque egestas diam in arcu cursus.</p>
+        <h2 className="title">Please open your MetaMask extension and try betting on the game below!</h2><br></br>
+        <p className="subtitle">Ideally, you would want to bet before a game starts, but since that API is 250 dollars a month, we are just using a test endpoint and its respective game feed.</p>
   </div>
 )
 
