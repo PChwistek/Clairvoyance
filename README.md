@@ -3,7 +3,7 @@ Clairvoyance is intended to be an eSports betting platform built on Ethereum, bu
 
 ## Features
 These are the main functionalities of the app.
-* Users can Bet Ether on an eSports game (test feed)
+* Users can bet Ether on an eSports game (test feed)
 * Distributes Ether pool after game ends according to bets
 	* Returns Ether if not enough wagers
 * Video syncs with game feed and events
