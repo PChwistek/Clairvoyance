@@ -38,7 +38,7 @@ contract Wager is owned {
 	}
 
 	event TakingBets(uint _wagerEventId, bool _isBetting);
-	event Distributable(bool _enoughToDistribute, bool _isBetting);
+	event CanDistribute(bool _enoughToDistribute, bool _isBetting);
 	event MakeBet(address _better, uint _amount, uint _wagerEventId, uint _clientId, bool _redWins);
 
 	mapping(uint => WagerEvent) public wagers;
@@ -73,7 +73,7 @@ contract Wager is owned {
 		WagerEvent storage w = wagers[wagerEventId];
 		w.takingBets = false;
 		bool moneyPoolSufficient = w.moneyPoolFor > 0 && w.moneyPoolAgainst > 0;
-		Distributable(moneyPoolSufficient, w.takingBets);
+		CanDistribute(moneyPoolSufficient, w.takingBets);
 	}
 
     function distributeMoney(uint wagerEventId , bool redWon) public onlyOwner returns (bool success) {
@@ -131,8 +131,6 @@ contract Wager is owned {
 
     
     //All the getters 
-
-    //make some for getting Bet data
 
 	function getMoneyPoolFor(uint wagerEventId) public constant returns (uint theMoneyPool){
 		return wagers[wagerEventId].moneyPoolFor;

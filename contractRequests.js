@@ -23,18 +23,18 @@ var wager = {
           gameId: '28125',
           takingBets: false,
           moneyPoolFor: 0,
-          moneyPoolAgainst: 0
+          moneyPoolAgainst: 0,
+          canDistribute: false
         };
 
-        WagerContract.deployed().then(function(instance) {
+        WagerContract.deployed()
+        .then(function(instance) {
           this.wagerInstance = instance;
           return this.wagerInstance.newWagerEvent(0, {from: account_one});
         }).then(function(result) {
-
           console.log("started taking bets");
           for (var i = 0; i < result.logs.length; i++) {
             var log = result.logs[i];
-
             if (log.event == "TakingBets") {
               console.log("The event id: " + log.args._wagerEventId.c[0]);
               tempMatch.wagerEventId = log.args._wagerEventId.c[0];
@@ -42,7 +42,6 @@ var wager = {
               break;
             }
           }
-
         }).catch(function (e){
           console.log(e);
         }); 
@@ -52,54 +51,54 @@ var wager = {
 
     requestStopBetting: function(tempMatch){
 
-    	wagerInstance.stopBetting(tempMatch.wagerEventId, {from: account_one}).then(function(result){
-
+      wagerInstance.stopBetting(tempMatch.wagerEventId, {from: account_one})
+      .then(function(result){
         console.log("stopped taking bets");
-        for (var i = 0; i < result.logs.length; i++) {
-          var log = result.logs[i];
-
-          if (log.event == 'Distributable') {
-            tempMatch.takingBets = log.args._isBetting;
-            this.canDistribute = log.args._enoughToDistribute;
-          }
-      }
-
-      }).catch(function (e){
+      })
+      .catch(function (e){
           console.log(e);
       }); 
 
-        return tempMatch;
     },
 
     requestDistributeMoney: function(tempMatch){
 
       var redWinner = false; //should be taken from gameData, but the test API call doesn't have it
-      wagerInstance.distributeMoney(tempMatch.wagerEventId, redWinner, {from: account_one}).then(function(result){
+      wagerInstance.distributeMoney(tempMatch.wagerEventId, redWinner, {from: account_one})
+      .then(function(result){
         console.log("distributed winnings");
-      }).catch(function (e){
+      })
+      .catch(function (e){
         console.log(e);
       }); 
+
     },
 
     requestReturnMoney: function(tempMatch){
 
-	  wagerInstance.returnMoney(tempMatch.wagerEventId, {from: account_one}).then(function(result){
-        console.log("returned bets");
-      }).catch(function (e){
-        console.log(e);
+  	  wagerInstance.returnMoney(tempMatch.wagerEventId, {from: account_one})
+      .then(function(result){
+          console.log("returned bets");
+        })
+      .catch(function (e){
+          console.log(e);
       }); 
+ 
     },
 
     getUpdateMoneyPool: function(tempMatch){
 
-      wagerInstance.getMoneyPoolAgainst.call(tempMatch.wagerEventId, {from: account_one}).then(function(result){
+      wagerInstance.getMoneyPoolAgainst.call(tempMatch.wagerEventId, {from: account_one})
+      .then(function(result){
         console.log("Money pool for blue win: " + result.toNumber());
         tempMatch.moneyPoolAgainst = result.toNumber();
-      }).catch(function (e){
+      })
+      .catch(function (e){
         console.log(e);
       }); 
 
-      wagerInstance.getMoneyPoolFor.call(tempMatch.wagerEventId, {from: account_one}).then(function(result){
+      wagerInstance.getMoneyPoolFor.call(tempMatch.wagerEventId, {from: account_one})
+      .then(function(result){
         console.log("Money pool for red win: " + result.toNumber());
         tempMatch.moneyPoolFor = result.toNumber();
       }).catch(function (e){

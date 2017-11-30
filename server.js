@@ -51,22 +51,25 @@ pandaSocket.onmessage = function(event) {
 
           currentMatch = wager.requestNewWager();
           currentMatch = updateGameStats(currentMatch, tempData);
+
         }
 
       } else {
 
         currentMatch = updateGameStats(currentMatch, tempData);
+        currentMatch = wager.getUpdateMoneyPool(currentMatch);
 
         if(currentMatch.finished){
 
-          currentMatch = wager.requestStopBetting(currentMatch);
-          wager.canDistribute ? wager.requestDistributeMoney(currentMatch): wager.requestReturnMoney(currentMatch);
+          wager.requestStopBetting(currentMatch);
 
-          currentMatch = {}; // reset game
+          currentMatch.canDistribute = currentMatch.moneyPoolFor > 0 && currentMatch.moneyPoolAgainst > 0;
 
-        } else {
-          currentMatch = wager.getUpdateMoneyPool(currentMatch);
-        }
+          currentMatch.canDistribute ? wager.requestDistributeMoney(currentMatch): wager.requestReturnMoney(currentMatch);
+
+          currentMatch = null; // reset game
+
+        } 
 
       }
 
@@ -87,18 +90,22 @@ pandaSocket.onmessage = function(event) {
     tempMatch.blueTowers = data.blue.towers;
     tempMatch.timestamp = data.current_timestamp;
     tempMatch.bluePlayers = [ 
+
       data.blue.players.top.name,
       data.blue.players.jun.name,
       data.blue.players.mid.name,
       data.blue.players.adc.name,
       data.blue.players.sup.name,
+
     ];
     tempMatch.redPlayers = [
+
       data.red.players.top.name,
       data.red.players.jun.name,
       data.red.players.mid.name,
       data.red.players.adc.name,
       data.red.players.sup.name,
+
     ];
 
     return tempMatch;
@@ -129,7 +136,8 @@ app.ws('/:match_id', function(ws, req) {
         }
       });
     }, 10000);
-  }).catch(function (e){
+  })
+  .catch(function (e){
     //console.log(e);
   });
 

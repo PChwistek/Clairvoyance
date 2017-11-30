@@ -10,6 +10,7 @@ import {
 var text = "Built with Solidity, Truffle, React, Node.js, and Bulma.";
 var text2 = "Data provided by Pandascore."
 var disclaimer = "For simplicity, this project does not follow how actual gambling works."
+var middleTextSub = "Place bets using different accounts and see how the funds get distributed once the game finishes."
 
 import BettingDetail from './BettingDetail'
 
@@ -111,7 +112,7 @@ const Card = () => (
 const Divider = () => (
   <div className="intro column is-8 is-offset-2">
         <h2 className="title">Open MetaMask and try betting on the game below!</h2><br></br>
-        <p className="subtitle">Try using different accounts and then seeing how funds are distributed once the game ends.</p>
+        <p className="subtitle">{middleTextSub}</p>
         <p className="subtitle">The game is on loop. (Hint: Blue wins!)</p>
   </div>
 )

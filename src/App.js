@@ -46,12 +46,13 @@ class App extends Component {
   componentDidMount() {
 
     axios.get('http://localhost:4040/live/')
-      .then(res => {
+    .then(res => {
         var tempList = res.data;
         this.setState({
           liveMatches : tempList
-        })
-    }).catch((e) => {
+      })
+    })
+    .catch((e) => {
       console.log("No live matches at this time.");
     });
 
@@ -76,6 +77,7 @@ class App extends Component {
     socket.onopen = function(){
       socket.send("Hellooooo from the other side!")
     }
+
     socket.onmessage = (event: Event) => {
 
       var temp = JSON.parse(event.data);
@@ -84,7 +86,7 @@ class App extends Component {
       this.setState({
         currentMatches : tempMatches
       })
-      console.log(this.state.currentMatches[0]);
+     // console.log(this.state.currentMatches[0]);
     }
 
   }
@@ -102,7 +104,8 @@ class App extends Component {
           wagerInstance : instance,
           account : accounts[0]
         })
-      }).then((result) => {
+      })
+      .then((result) => {
         console.log(this.state.account);
       });
     })
