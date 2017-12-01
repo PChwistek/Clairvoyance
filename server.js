@@ -3,7 +3,6 @@ var cors = require('cors');
 var app = express();
 app.use(cors());
 var expressWs = require('express-ws')(app);
-var WebSocket = require('ws');
 var clairvoyanceRouter = require('./expressRoutes/clairvoyanceRouter.js');
 const keys = require('./pandaScoreKeys');
 var ClientSocket = require('ws');
@@ -17,17 +16,14 @@ var takingMessages = true;
 app.use('/', clairvoyanceRouter); //for REST
 
 app.use(function (req, res, next) {
-  console.log('middleware');
-  req.testing = 'testing';
   return next();
 });
  
-app.get('/currentMatch', function(req, res, next){
-    res.end(JSON.stringify(currentMatch));
+app.get('/currentMatch', function(req, res){
+  res.end(JSON.stringify(currentMatch));
 });
 
-app.get('/', function(req, res, next){
-  console.log('get route', req.testing);
+app.get('/', function(req, res){
   res.end();
 });
 
@@ -35,9 +31,9 @@ app.get('/', function(req, res, next){
 
 var pandaSocket = new ClientSocket('wss://live.test.pandascore.co/matches/28125?token=' + keys.token);
 
-pandaSocket.onmessage = function(event) {
+pandaSocket.onmessage = function(event) { 
 
-  if(takingMessages){ //make sure that it doesn't complicate things when writing to blockchain
+  if (takingMessages){ //make sure that it doesn't complicate things when writing to blockchain
 
     try{
 
@@ -53,7 +49,7 @@ pandaSocket.onmessage = function(event) {
           currentMatch = updateGameStats(currentMatch, tempData);
 
         }
-
+        
       } else {
 
         currentMatch = updateGameStats(currentMatch, tempData);
@@ -90,31 +86,27 @@ pandaSocket.onmessage = function(event) {
     tempMatch.blueTowers = data.blue.towers;
     tempMatch.timestamp = data.current_timestamp;
     tempMatch.bluePlayers = [ 
-
       data.blue.players.top.name,
       data.blue.players.jun.name,
       data.blue.players.mid.name,
       data.blue.players.adc.name,
-      data.blue.players.sup.name,
-
+      data.blue.players.sup.name
     ];
     tempMatch.redPlayers = [
-
       data.red.players.top.name,
       data.red.players.jun.name,
       data.red.players.mid.name,
       data.red.players.adc.name,
-      data.red.players.sup.name,
-
+      data.red.players.sup.name
     ];
 
     return tempMatch;
   }
 
-}
+};
 
 //=================== Websocket routes =======================/
-
+/*eslint-disable no-console*/
 app.ws('/:match_id', function(ws, req) {
 
   var isOpen = false; //this isn't great but works for my one instance, should be attached to each client probably
@@ -124,7 +116,6 @@ app.ws('/:match_id', function(ws, req) {
 
   ws.on('close', function close() {
     isOpen = false;
-    console.log('disconnected');
   });
 
   ws.on('message', function(msg) {
@@ -138,7 +129,7 @@ app.ws('/:match_id', function(ws, req) {
     }, 10000);
   })
   .catch(function (e){
-    //console.log(e);
+    console(e);
   });
 
 });

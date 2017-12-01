@@ -1,16 +1,18 @@
+/*eslint-disable*/
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import {
   BrowserRouter,
   Route,
   Link
 } from 'react-router-dom'
 
-var text = "Built with Solidity, Truffle, React, Node.js, and Bulma.";
-var text2 = "Data provided by Pandascore."
-var disclaimer = "For simplicity, this project does not follow how actual gambling works."
-var middleTextSub = "Place bets using different accounts and see how the funds get distributed once the game finishes."
+
+
+var text = 'Built with Solidity, Truffle, React, Node.js, and Bulma.';
+var text2 = 'Data provided by Pandascore.';
+var disclaimer = 'For simplicity, this project does not follow how actual gambling works.';
+var middleTextSub = 'Place bets using different accounts and see how the funds get distributed once the game finishes.';
 
 import BettingDetail from './BettingDetail'
 
@@ -26,7 +28,7 @@ const routes = [
     mainText: () => <div><h1 className="title">Bet on Pro Games</h1><h2 className="subtitle"> *Not implemented</h2></div>,
     main: () => Tournaments,
   }
-]
+];
 
 const Router = ({currentMatch, handleBetCallback}) => (
   <BrowserRouter>
@@ -37,7 +39,7 @@ const Router = ({currentMatch, handleBetCallback}) => (
             <div className="container">
               <div className="navbar-brand">
                 <div className="navbar-item">
-                  <Link to="/"><img src={require("./logo3.png")}></img></Link>
+                  <Link to="/"><img src={require('./logo3.png')}></img></Link>
                 </div>
               </div>
               <div id="navbarMenu" className="navbar-menu">
@@ -80,7 +82,7 @@ const Router = ({currentMatch, handleBetCallback}) => (
 
     </div>
   </BrowserRouter>
-)
+);
 
 const Home = ({currentMatch, handleBetCallback}) => (
   <div>
@@ -88,18 +90,18 @@ const Home = ({currentMatch, handleBetCallback}) => (
     <Divider />
     <BettingDetail currentMatch={currentMatch} handleBetCallback={handleBetCallback} />
   </div>
-)
+);
 
 const Tournaments = ({ match }) => (
   <div>
   </div>
-)
+);
 
 const Tournament = ({ match }) => (
   <div>
     <h3>{match.params.topicId}</h3>
   </div>
-)
+);
 
 const Card = () => (
   <div className="box cta">
@@ -107,7 +109,7 @@ const Card = () => (
       <span className="tag is-primary">!</span> {disclaimer}
     </p>
   </div>
-)
+);
 
 const Divider = () => (
   <div className="intro column is-8 is-offset-2">
@@ -115,7 +117,7 @@ const Divider = () => (
         <p className="subtitle">{middleTextSub}</p>
         <p className="subtitle">The game is on loop. (Hint: Blue wins!)</p>
   </div>
-)
+);
 
 const Footer = () => (
   <footer className="footer">
@@ -125,10 +127,10 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-)
+);
 
-ReactDOM.render(<Divider />, document.getElementById('root'))
-ReactDOM.render(<Card />, document.getElementById('root'))
-ReactDOM.render(<Footer />, document.getElementById('root'))
+ReactDOM.render(<Divider />, document.getElementById('root'));
+ReactDOM.render(<Card />, document.getElementById('root'));
+ReactDOM.render(<Footer />, document.getElementById('root'));
 
 export default Router
