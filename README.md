@@ -1,6 +1,8 @@
 # Clairvoyance
 Clairvoyance is intended to be an eSports betting platform built on Ethereum, but is more of an educational project geared towards writing smart contracts, working with Truffle, and interacting with the smart contract on the front and back-end. Of course, you typically don't bet on a game while it is ongoing, but I just wanted to connect some feed from Pandascore for it to act as an oracle. Every bet is also 1 Ether, for simplicity. 
 
+Images: https://github.com/PChwistek/Clairvoyance/issues/1
+
 ## Features
 These are the main functionalities of the app.
 * Users can bet Ether on an eSports game (test feed)
